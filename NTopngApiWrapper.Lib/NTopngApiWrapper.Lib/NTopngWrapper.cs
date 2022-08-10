@@ -19,4 +19,24 @@ public class NTopngWrapper
     /// Ntopng password
     /// </summary>
     private string _ntopPassword = string.Empty;
+
+
+    private HttpClient _httpClient = new HttpClient();
+
+    /// <summary>
+    /// Default constructor
+    /// </summary>
+    public NTopngWrapper()
+    {
+        
+    }
+
+    /// <summary>
+    /// Constructor for injection
+    /// </summary>
+    /// <param name="httpClient">Http client</param>
+    public NTopngWrapper(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
 }
