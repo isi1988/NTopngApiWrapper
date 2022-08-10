@@ -107,4 +107,25 @@ public class NTopngWrapper
             return null;
         }
     }
+    
+    public async Task<Data.HostStats.Root?> GetHostStats(string ip)
+    {
+        if (_properties == null)
+            throw new Exception($"Properties is null!");
+        
+        try
+        {
+            
+            var json = await GetJSONData($"{_properties.NTopngHost}lua/host_stats.lua?ifid=1&host={ip}");
+            if (!string.IsNullOrEmpty(json))
+                return JsonSerializer.Deserialize<Data.HostStats.Root>(json);
+            else
+                throw new Exception($"Json from request lua/host_stats.lua?ifid=1&host={ip} null or empty");
+        }
+        catch (Exception e)
+        {
+            //TODO error event
+            return null;
+        }
+    }
 }
