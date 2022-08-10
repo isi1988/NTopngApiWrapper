@@ -1,6 +1,5 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
-using NTopngApiWrapper.Lib.Data.DataRequest;
 
 namespace NTopngApiWrapper.Lib;
 
@@ -67,7 +66,7 @@ public class NTopngWrapper
         return null;
     }
 
-    public async Task<Root?> GetInterfaceData()
+    public async Task<Data.DataRequest.Root?> GetInterfaceData()
     {
         if (_properties == null)
             throw new Exception($"Properties is null!");
@@ -77,9 +76,30 @@ public class NTopngWrapper
             
             var json = await GetJSONData($"{_properties.NTopngHost}lua/rest/v2/get/interface/data.lua?ifid=1");
             if (!string.IsNullOrEmpty(json))
-                return JsonSerializer.Deserialize<Root>(json);
+                return JsonSerializer.Deserialize<Data.DataRequest.Root>(json);
             else
                 throw new Exception($"Json from request lua/rest/v2/get/interface/data.lua?ifid=1 null or empty");
+        }
+        catch (Exception e)
+        {
+            //TODO error event
+            return null;
+        }
+    }
+    
+    public async Task<Data.FlowSankeyRequest.Root?> GetFlowSankey()
+    {
+        if (_properties == null)
+            throw new Exception($"Properties is null!");
+        
+        try
+        {
+            
+            var json = await GetJSONData($"{_properties.NTopngHost}lua/iface_flows_sankey.lua");
+            if (!string.IsNullOrEmpty(json))
+                return JsonSerializer.Deserialize<Data.FlowSankeyRequest.Root>(json);
+            else
+                throw new Exception($"Json from request lua/iface_flows_sankey.lua null or empty");
         }
         catch (Exception e)
         {

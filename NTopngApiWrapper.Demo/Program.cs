@@ -8,6 +8,12 @@ var wrapper = new NTopngWrapper();
 wrapper.InitFromFile();
 
 //Get interface data
-var root = await wrapper.GetInterfaceData();
+var rootData = await wrapper.GetInterfaceData();
+
+
+//Get flow sankey diagram
+var rootFlowSankey = await wrapper.GetFlowSankey();
+
+
 
 Console.ReadKey();
