@@ -1,5 +1,5 @@
 {
-  "ntophost": "place here host",
-  "ntoplogin": "admin",
-  "ntoppasswprd": "admin"
+  "ntopnghost": "place here host",
+  "ntopnglogin": "admin",
+  "ntopngpassword": "admin"
 }

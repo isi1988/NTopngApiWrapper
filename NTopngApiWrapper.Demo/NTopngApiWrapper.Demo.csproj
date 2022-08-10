@@ -11,4 +11,13 @@
       <ProjectReference Include="..\NTopngApiWrapper.Lib\NTopngApiWrapper.Lib\NTopngApiWrapper.Lib.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="config.secret.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
